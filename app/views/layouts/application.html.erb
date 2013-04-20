@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Excorpse</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 <body>
 
-<%= yield %>
+   <header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <%= link_to "excorpse", '#', class: "brand" %>
+        <nav>
+          <ul class="nav pull-right">
+            <li><%= link_to "Home",    '#' %></li>
+            <% if user_signed_in? %>
+            <li>
+            <%= link_to('Your Account', edit_user_registration_path) %>
+            </li>
+            <li>
+            <%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
+            </li>
+            <% else %>
+            <li>
+            <%= link_to('Log In', new_user_session_path)  %>
+            </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <% if notice %><div class="alert"><%= notice %></div><% end %>
+    <% if alert %><p class="alert alert-error"><%= alert %></div><% end %>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
