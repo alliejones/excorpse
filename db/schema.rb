@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(:version => 20130420182552) do
 
   create_table "steps", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "sequence_id"
+    t.integer  "game_id"
+    t.integer  "game_index"
     t.string   "type"
     t.text     "contents"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
