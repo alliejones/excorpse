@@ -1,0 +1,21 @@
+<h1>Listing steps</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @steps.each do |step| %>
+  <tr>
+    <td><%= link_to 'Show', game_step(@game) %></td>
+    <td><%= link_to 'Edit', edit_game_step_path(@game, step) %></td>
+    <td><%= link_to 'Destroy', step, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Step', new_game_step_path(@game) %>

@@ -2,12 +2,12 @@
 
 one:
   user_id: 1
-  sequence_id: 1
-  type: 
+  game_id: 1
+  type:
   contents: MyText
 
 two:
   user_id: 1
-  sequence_id: 1
-  type: 
+  game_id: 1
+  type:
   contents: MyText

@@ -14,10 +14,10 @@
    <header class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <%= link_to "excorpse", '#', class: "brand" %>
+        <%= link_to "excorpse", root_path, class: "brand" %>
         <nav>
           <ul class="nav pull-right">
-            <li><%= link_to "Home",    '#' %></li>
+            <li><%= link_to "Home", root_path %></li>
             <% if user_signed_in? %>
             <li>
             <%= link_to('Your Account', edit_user_registration_path) %>

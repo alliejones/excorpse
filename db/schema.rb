@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130420182552) do
 
-  create_table "sequences", :force => true do |t|
+  create_table "games", :force => true do |t|
     t.boolean  "complete"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

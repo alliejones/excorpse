@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SequenceTest < ActiveSupport::TestCase
+class GameTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
