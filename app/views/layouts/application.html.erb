@@ -4,6 +4,7 @@
   <title>Excorpse</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -19,6 +20,7 @@
           <ul class="nav pull-right">
             <li><%= link_to "Home", root_path %></li>
             <% if user_signed_in? %>
+            <li><%= link_to "Play", games_path %></li>
             <li>
             <%= link_to('Your Account', edit_user_registration_path) %>
             </li>
@@ -38,7 +40,7 @@
 
   <div class="container-fluid">
     <% if notice %><div class="alert"><%= notice %></div><% end %>
-    <% if alert %><p class="alert alert-error"><%= alert %></div><% end %>
+    <% if alert %><div class="alert alert-error"><%= alert %></div><% end %>
     <%= yield %>
   </div>
 

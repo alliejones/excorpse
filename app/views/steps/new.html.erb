@@ -1,5 +1,36 @@
-<h1>New step</h1>
+<% content_for :head do %>
+  <script type="text/javascript">
+    var canvas;
+    $(function() {
+      canvas = new Canvas({ id: 'canvas', width: 725, height: 350 });
+
+      $('#clear').on('click', function() { canvas.clear(); });
+
+      $('.colors li').css('backgroundColor', function() {
+        return $(this).data('color');
+      }).on('click', function() {
+        canvas.setStrokeColor($(this).data('color'));
+        $(this).addClass('selected').siblings().removeClass('selected');
+      });
+
+      $('.sizes li').each(function() {
+        var size = $(this).data('size');
+        $('<div class="circle"></div>').css({
+          width: size,
+          height: size
+        }).appendTo($(this));
+      }).on('click', function() {
+        canvas.setStrokeWidth($(this).data('size'));
+        $(this).addClass('selected').siblings().removeClass('selected');
+      });
+
+      $(window).on('mouseup', function() {
+        $('#step_contents').val(JSON.stringify(canvas.recording.toJSON()));
+      });
+    });
+  </script>
+<% end %>
+
+<h1>Draw!</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', game_steps_path(@game) %>

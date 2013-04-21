@@ -1,8 +1,10 @@
 class StepsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET games/1/steps
   # GET games/1/steps.json
   def index
-    find_parent
+    find_game
     @steps = Step.all
 
     respond_to do |format|
@@ -14,7 +16,7 @@ class StepsController < ApplicationController
   # GET games/1/steps/1
   # GET games/1/steps/1.json
   def show
-    find_parent
+    find_game
     @step = Step.find(params[:id])
 
     respond_to do |format|
@@ -26,8 +28,8 @@ class StepsController < ApplicationController
   # GET games/1/steps/new
   # GET games/1/steps/new.json
   def new
-    find_parent
-    @step = Step.new
+    find_game
+    @step = @game.steps.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,19 +39,21 @@ class StepsController < ApplicationController
 
   # GET games/1/steps/1/edit
   def edit
-    find_parent
+    find_game
     @step = Step.find(params[:id])
   end
 
   # POST games/1/steps
   # POST games/1/steps.json
   def create
-    find_parent
-    @step = Step.new(params[:step])
+    find_game
+    @step = @game.steps.build(params[:step])
+    @step.user = current_user
+    @step.game_index = @game.steps.count + 1
 
     respond_to do |format|
       if @step.save
-        format.html { redirect_to @step, notice: 'Step was successfully created.' }
+        format.html { redirect_to game_step_url(@game, @step), notice: 'Step was successfully created.' }
         format.json { render json: @step, status: :created, location: @step }
       else
         format.html { render action: "new" }
@@ -81,13 +85,13 @@ class StepsController < ApplicationController
     @step.destroy
 
     respond_to do |format|
-      format.html { redirect_to steps_url }
+      format.html { redirect_to game_steps_url }
       format.json { head :no_content }
     end
   end
 
   protected
-    def find_parent
+    def find_game
       @game = Game.find(params[:game_id])
     end
 end

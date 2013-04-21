@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /games
   # GET /games.json
   def index
@@ -15,9 +17,13 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @game }
+    if @game.complete
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @game }
+      end
+    else
+      redirect_to new_game_step_path(@game)
     end
   end
 

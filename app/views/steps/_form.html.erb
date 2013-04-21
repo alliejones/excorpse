@@ -2,7 +2,6 @@
   <% if @step.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@step.errors.count, "error") %> prohibited this step from being saved:</h2>
-
       <ul>
       <% @step.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,7 +10,14 @@
     </div>
   <% end %>
 
+  <% if f.object.new_record? %>
+    <%= render "shared/doodler" %>
+
+    <%= f.hidden_field :contents %>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit %>
+    <a href="#" id="clear" class="btn">Start Over</a>
+    <%= f.submit "I'm done!", class: 'btn btn-large' %>
   </div>
 <% end %>
