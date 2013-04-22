@@ -26,6 +26,7 @@
 
       $(window).on('mouseup', function() {
         $('#step_contents').val(JSON.stringify(canvas.recording.toJSON()));
+        $('#step_image_data').val(canvas.el.toDataURL());
       });
     });
   </script>
@@ -33,4 +34,15 @@
 
 <h1>Draw!</h1>
 
-<%= render 'form' %>
+<%= form_for([@game, @step]) do |f| %>
+
+  <%= render "doodler" %>
+
+  <%= f.hidden_field :contents %>
+  <%= f.hidden_field :image_data %>
+
+  <div class="actions">
+    <a href="#" id="clear" class="btn">Start Over</a>
+    <%= f.submit "I'm done!", class: 'btn btn-large' %>
+  </div>
+<% end %>

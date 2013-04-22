@@ -1,5 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= image_tag @step.image %>
 
+<p>Drawn by <%= @step.user.email %></p>
 
-<%= link_to 'Edit', edit_game_step_path(@game, @step) %> |
-<%= link_to 'Back', game_steps_path(@game) %>
+<%= link_to 'Back', game_path(@game) %>

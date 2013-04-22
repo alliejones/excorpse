@@ -1,4 +1,7 @@
-<div class="canvas-container"><canvas id="canvas"></canvas></div>
+<div class="canvas-container">
+  <%= image_tag @game.steps.order(:game_index).last.image(:preview), alt: '', class: 'preview' %>
+  <canvas id="canvas"></canvas>
+</div>
 
 <ul class="colors option">
   <li data-color="black" class="selected"></li>

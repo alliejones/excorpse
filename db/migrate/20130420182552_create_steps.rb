@@ -4,8 +4,8 @@ class CreateSteps < ActiveRecord::Migration
       t.integer :user_id
       t.integer :game_id
       t.integer :game_index
-      t.string :type
       t.text :contents
+      t.attachment :image
 
       t.timestamps
     end

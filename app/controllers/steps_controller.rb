@@ -5,12 +5,7 @@ class StepsController < ApplicationController
   # GET games/1/steps.json
   def index
     find_game
-    @steps = Step.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @steps }
-    end
+    redirect_to game_url(@game)
   end
 
   # GET games/1/steps/1
@@ -37,12 +32,6 @@ class StepsController < ApplicationController
     end
   end
 
-  # GET games/1/steps/1/edit
-  def edit
-    find_game
-    @step = Step.find(params[:id])
-  end
-
   # POST games/1/steps
   # POST games/1/steps.json
   def create
@@ -50,29 +39,17 @@ class StepsController < ApplicationController
     @step = @game.steps.build(params[:step])
     @step.user = current_user
     @step.game_index = @game.steps.count + 1
+    @step.save_image(params[:step][:image_data])
 
     respond_to do |format|
       if @step.save
+        @game.complete = true if @game.steps.count == 3
+        @game.save
+
         format.html { redirect_to game_step_url(@game, @step), notice: 'Step was successfully created.' }
         format.json { render json: @step, status: :created, location: @step }
       else
         format.html { render action: "new" }
-        format.json { render json: @step.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT games/1/steps/1
-  # PUT games/1/steps/1.json
-  def update
-    @step = Step.find(params[:id])
-
-    respond_to do |format|
-      if @step.update_attributes(params[:step])
-        format.html { redirect_to @step, notice: 'Step was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @step.errors, status: :unprocessable_entity }
       end
     end

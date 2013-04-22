@@ -4,7 +4,7 @@ Excorpse::Application.routes.draw do
   devise_for :users
 
   resources :games do
-    resources :steps
+    resources :steps, :except => [ :edit, :update ]
   end
 
   # The priority is based upon order of creation:

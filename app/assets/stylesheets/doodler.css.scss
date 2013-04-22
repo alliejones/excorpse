@@ -1,11 +1,22 @@
 .canvas-container {
   padding: 50px;
   margin: 0 auto;
+  position: relative;
   width: 725px;
+
+  .preview {
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    cursor: crosshair;
+    position: absolute;
+    pointer-events: none;
+    top: 25px;
+  }
 }
 
 #canvas {
   border: 1px solid #ccc;
+  border-top-color: #eee;
   cursor: crosshair;
   display: block;
   height: 350px;
