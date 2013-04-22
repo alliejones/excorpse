@@ -1,3 +1,5 @@
+require 'RMagick'
+
 class Game < ActiveRecord::Base
   attr_accessible :complete
 
