@@ -21,6 +21,7 @@
   display: block;
   height: 350px;
   width: 725px;
+  .first & { border-top-color: #ccc; }
 }
 
 #canvas:active, #canvas:focus { cursor: crosshair; }

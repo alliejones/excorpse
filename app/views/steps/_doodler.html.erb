@@ -1,5 +1,7 @@
-<div class="canvas-container">
+<div class="canvas-container<%= ' first' if @game.steps.count == 0 %>">
+  <% if @game.steps.count > 0 %>
   <%= image_tag @game.steps.order(:game_index).last.image(:preview), alt: '', class: 'preview' %>
+  <% end %>
   <canvas id="canvas"></canvas>
 </div>
 
