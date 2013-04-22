@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'rmagick'
 gem 'paperclip'
 
 # Bundle edge Rails instead:
