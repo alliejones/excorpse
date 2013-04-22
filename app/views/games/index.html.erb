@@ -1,8 +1,12 @@
-<h1>Current Games</h1>
-
-<ul>
+<h1>Games</h1>
+<h2>Finished Games</h2>
+<ul class="thumbnails">
 <% @games.each do |game| %>
-  <li><%= link_to "Game ##{game.id}", game %></li>
+  <li class="span3">
+    <div class="thumbnail">
+      <%= link_to image_tag(game.image :thumb), game %>
+    </div>
+  </li>
 <% end %>
 </ul>
 

@@ -43,7 +43,7 @@ class StepsController < ApplicationController
 
     respond_to do |format|
       if @step.save
-        @game.complete = true if @game.steps.count == 3
+        @game.complete = true if @game.steps.count >= 3
         @game.save
 
         format.html { redirect_to game_step_url(@game, @step), notice: 'Step was successfully created.' }
