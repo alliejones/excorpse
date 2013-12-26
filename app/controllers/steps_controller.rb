@@ -46,7 +46,11 @@ class StepsController < ApplicationController
         @game.complete = true if @game.steps.count >= 3
         @game.save
 
-        format.html { redirect_to game_step_url(@game, @step), notice: 'Step was successfully created.' }
+        if @game.complete
+          format.html { redirect_to game_url(@game), notice: "You finished this exquisite corpse! Here's the final product." }
+        else
+          format.html { redirect_to home, notice: "Nice one! We'll let you know when the game is finished and the final drawing is ready." }
+        end
         format.json { render json: @step, status: :created, location: @step }
       else
         format.html { render action: "new" }

@@ -1,1 +1,22 @@
 <h1>Welcome to ExCorpse</h1>
+
+<hr>
+
+<div style="text-align: center">
+  <%= link_to 'Start a New Game', new_game_path, class: 'btn btn-primary btn-large' %>
+  <%= link_to 'Continue a Game', continue_games_path, class: 'btn btn-primary btn-large' %>
+</div>
+
+<hr>
+
+<h2>Latest Games</h2>
+<%= render partial: "shared/game_list", locals: { games: @newest_games } %>
+
+<hr>
+
+<h2>Your Completed Games</h2>
+<%= render partial: "shared/game_list", locals: { games: @users_games } %>
+<% @newest_games.each do |game| %>
+<% end %>
+
+

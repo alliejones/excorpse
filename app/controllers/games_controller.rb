@@ -12,6 +12,16 @@ class GamesController < ApplicationController
     end
   end
 
+  def continue
+    @game = User.where('id != ?', current_user.id).all.games.where(:complete => 0).first
+
+    if @game
+      redirect_to new_game_step_path(@game)
+    else
+      redirect_to home, notice: "Sorry, you've participated in all of the current games. You should start a new one instead!"
+    end
+  end
+
   # GET /games/1
   # GET /games/1.json
   def show
@@ -33,11 +43,8 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @game }
-    end
+    @game.save
+    redirect_to new_game_step_path(@game)
   end
 
   # GET /games/1/edit

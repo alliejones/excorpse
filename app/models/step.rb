@@ -5,7 +5,7 @@ class Step < ActiveRecord::Base
     :styles => { :preview => '' },
     :convert_options => { :preview => '-crop 725x25+0+325' }
 
-  belongs_to :sequence
+  belongs_to :game
   belongs_to :user
 
   def save_image(image_data)

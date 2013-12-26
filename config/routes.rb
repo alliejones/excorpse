@@ -4,6 +4,9 @@ Excorpse::Application.routes.draw do
   devise_for :users
 
   resources :games do
+    collection do
+      get :continue
+    end
     resources :steps, :except => [ :edit, :update ]
   end
 

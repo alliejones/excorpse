@@ -1,0 +1,9 @@
+<ul class="thumbnails">
+<% games.each do |game| %>
+  <li class="span3">
+    <div class="thumbnail">
+      <%= link_to image_tag(game.image :thumb), game %>
+    </div>
+  </li>
+<% end %>
+</ul>
